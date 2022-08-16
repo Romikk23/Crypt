@@ -1,5 +1,5 @@
 # Crypt
-Created by [@Romikk23](t.me/Romiikk), August 2022.
+Created by [@Romikk23](https://t.me/Romiikk), August 2022.
 ## Encrypter and decrypter text ##
 
 Simple algorithm, that encrypt text into picture and create new encrypted image, which differs by 0.5% by sight!
