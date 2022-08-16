@@ -18,20 +18,29 @@ public class Main {
         decryptor(finalImg);
          */
         int rgb = 0b01111100_00101011_01100100;
+        int ch ='x'; // 0b01100001
+
+        rgb &= 0xF8FCF8; // 0b01111000_00101000_01100000
+        rgb |= (((ch >> 5) << 16) | ((ch >> 3 & 0x3) << 8) |(ch & 0x7)); // 0b01111011_00101000_01100001
+
+        int newChar = ( ((rgb >> 16) & 0x7) << 5 | ((rgb >> 8) & 0x3) << 3 | (rgb & 0x7) );
+
+        System.out.println(String.valueOf((char) newChar));
+         /*
+         int rgb = 0b01111100_00101011_01100100;
         int red = ( rgb >>  16 ) & 255 & ~( (1 << 0) | (1 << 1) | (1 << 2) ); // 0b01111000 відділяємо байт червоного кольору та вимикаємо перші три біти для запису
         int green = ( rgb >>  8 ) & 255 & ~( (1 << 0) | (1 << 1) ); // 0b00101000 відділяємо байт зеленого кольору та вимикаємо перші два біти для запису
         int blue =  ( rgb >> 0 ) & 255 & ~( (1 << 0) | (1 << 1) | (1 << 2) ); // 0b01100000 відділяємо байт синього кольору та вимикаємо перші три біти для запису
 
-        int ch ='z'; // 0b01100001
-        int one = (ch >> 5); // 0b011
-        int two = (ch >> 3) & 0x3; // 0b00
-        int three = (ch>>0) & 0x7; // 0b001
+        int ch ='a'; // 0b01100001
+
+        int one = (ch >> 5); // 0b011          ch << 11
+        int two = (ch >> 3) & 0x3; // 0b00     ch << 5 & 0x3
+        int three = (ch>>0) & 0x7; // 0b001    ch << 0 & 0x7
 
         red |= one; // 0b01111011
         green |= two; // 0b00101000
         blue |= three; // 0b01100001
-
-        int newColor = (red << 16 | green << 8 | blue); // 0b01111011_00101000_01100001
 
         red = ( newColor >>  16 ) & 0x7; // 0b01111000 відділяємо байт червоного кольору та вимикаємо перші три біти для запису
         green = ( newColor >>  8 ) & 0x3; // 0b00101000 відділяємо байт зеленого кольору та вимикаємо перші два біти для запису
@@ -40,6 +49,7 @@ public class Main {
         int newChar = (red << 5 | green << 3 | blue);
         char chh = (char) newChar;
         System.out.println(String.valueOf(chh));
+         */
 
     }
     public static void encryptor(BufferedImage initialImg, char thisChar){
